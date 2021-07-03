@@ -1,0 +1,58 @@
+" l for less
+set vicmd='less -N'
+
+" search configs
+set caseoptions='pg'
+set incsearch
+" set smartcase
+
+" H for dir history
+nnoremap H :his d<cr>
+set history=100
+
+" H for marks
+nnoremap J :marks<cr>
+
+" What should be saved automatically between vifm runs
+" Like in previous versions of vifm
+" set vifminfo=options,filetypes,commands,bookmarks,dhistory,state,cs
+set vifminfo=dhistory,marks,bookmarks
+
+" copy to the other pane
+nnoremap C :copy<cr>
+" move to the other pane
+"nnoremap m :move<cr>
+nnoremap M :move<cr>
+
+" E to open with vim
+command! vim vim %f
+nnoremap E :vim<cr>
+
+" ディレクトリを作成する
+nnoremap K :mkdir<space>
+
+" カレントファイルを関連付けられたデフォルトのアプリケーションで開く。フォルダの場合は Finder で開く (Mac)
+nnoremap X :!open %f<cr>
+
+" 反対側のペインをカレントペインと同期する
+nnoremap , :sync!<cr>
+nnoremap O :sync!<cr>
+
+" スペースキーを「カレントファイルを選択して、カーソルを1つ下に移動」にする
+nnoremap <space> t<down>
+
+" q or Q to quit
+nnoremap q :quit<cr>
+nnoremap Q :cquit<cr>
+
+" zip unzip
+command! zip zip -r %D/%c:r.zip %f
+nnoremap Z :zip<cr>
+nnoremap U :!unzip %f -d %D<cr>
+
+set timefmt=" %Y/%m/%d %H:%M:%S"
+set statusline="  %t  [%T]%= %A %10u:%-7g %15s %20d [%a free]"
+set viewcolumns=-45%{name}..,-{ext},10{size},12{perms},21{mtime}
+set sizefmt=units:iec,precision:3
+
+colorscheme suzuki

@@ -1,0 +1,14 @@
+[color]
+	ui = auto
+[core]
+	editor = vim
+	autocrlf = input
+	safecrlf = false
+[http]
+	postBuffer = 524288000
+[commit]
+	template = ~/.git_commit_msg
+[push]
+	default = simple
+[diff]
+	compactionHeuristic = true

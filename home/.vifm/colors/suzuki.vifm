@@ -1,0 +1,26 @@
+" generic file types
+highlight BrokenLink cterm=none ctermfg=16 ctermbg=203
+highlight Device cterm=none ctermfg=123 ctermbg=236
+highlight Directory cterm=none ctermfg=81 ctermbg=default
+highlight Executable cterm=bold ctermfg=203 ctermbg=default
+highlight Fifo cterm=none ctermfg=16 ctermbg=81
+highlight Link cterm=none ctermfg=205 ctermbg=default
+highlight Socket cterm=none ctermfg=16 ctermbg=205
+highlight Win cterm=none ctermfg=default ctermbg=default
+
+" file name specific highlight
+highlight /^.*(\.bib|\.bst|\.cfg|\.conf|\.config|\.csv|\.desktop|\.htm|\.html|\.ini|\.json|\.markdown|\.md|\.mdown|\.nix|\.rst|\.shtml|\.tml|\.toml|\.ui|\.xhtml|\.xml|\.xmp|\.yaml|\.yml|dockerfile|passwd|shadow)$/I cterm=none ctermfg=153 ctermbg=default
+highlight /^.*(\.clang-format|\.cmake|\.cmake.in|\.dox|\.fdignore|\.flake8|\.gemspec|\.gitattributes|\.gitconfig|\.gitignore|\.gitmodules|\.hgrc|\.ignore|\.kdevelop|\.make|\.ods|\.pro|\.rgignore|\.xlr|\.xls|\.xlsx|cmakelists.txt|codeowners|configure|configure.ac|doxyfile|hgrc|makefile|makefile.am|manifest.in|requirements.txt|sconscript|sconstruct|setup.py)$/I cterm=none ctermfg=158 ctermbg=default
+highlight /^.*\.(kex|odp|pps|ppt|pptx|sxi)$/I cterm=none ctermfg=203 ctermbg=default
+highlight /^.*\.(bmp|gif|ico|jpeg|jpg|pbm|pgm|png|ppm|svg|tif|xcf)$/I cterm=none ctermfg=205 ctermbg=default
+highlight /^.*\.(avi|flv|h264|m4v|mkv|mov|mp4|mpeg|mpg|rm|swf|vob|wmv)$/I cterm=none ctermfg=217 ctermbg=default
+highlight /^.*\.(aif|flac|mid|mp3|ogg|wav|wma)$/I cterm=none ctermfg=218 ctermbg=default
+highlight /^.*(\.aux|\.bak|\.bbl|\.bc|\.bcf|\.blg|\.cache|\.class|\.dyn_hi|\.dyn_o|\.fdb_latexmk|\.fls|\.git|\.hi|\.idx|\.ilg|\.ind|\.la|\.lo|\.lock|\.log|\.o|\.orig|\.out|\.pid|\.pyc|\.rlib|\.scons_opt|\.sconsign.dblite|\.sty|\.swp|\.synctex.gz|\.tmp|\.toc|cmakecache.txt|makefile.in|package-lock.json|~)$/I cterm=none ctermfg=241 ctermbg=default
+highlight /^.*(\.fnt|\.fon|\.otf|\.ttf|copying|copyright|license|license-apache|license-mit)$/I cterm=none ctermfg=247 ctermbg=default
+highlight /^.*\.(txt)$/I cterm=none ctermfg=255 ctermbg=default
+highlight /^.*(\.doc|\.docx|\.epub|\.odt|\.pdf|\.ps|\.rtf|\.sxw|contributors|contributors.md|contributors.txt|install|install.md|install.md.txt|readme|readme.md|readme.txt)$/I cterm=none ctermfg=63 ctermbg=default
+highlight /^.*\.(ics)$/I cterm=none ctermfg=81 ctermbg=default
+highlight /^.*(\.applescript|\.as|\.asa|\.awk|\.bash|\.bsh|\.c|\.cabal|\.cc|\.cgi|\.clj|\.cp|\.cpp|\.cr|\.cs|\.csx|\.cxx|\.d|\.dart|\.def|\.di|\.diff|\.dot|\.dpr|\.el|\.elm|\.epp|\.erl|\.ex|\.exs|\.fish|\.fs|\.fsi|\.fsx|\.go|\.gradle|\.groovy|\.gv|\.gvy|\.h|\.hh|\.hpp|\.hs|\.htc|\.hxx|\.inc|\.inl|\.ipp|\.ipynb|\.java|\.jl|\.js|\.kt|\.kts|\.less|\.lisp|\.ll|\.ltx|\.lua|\.m|\.matlab|\.mir|\.ml|\.mli|\.mn|\.nb|\.p|\.pas|\.patch|\.php|\.pl|\.pm|\.pod|\.pp|\.ps1|\.psd1|\.psm1|\.purs|\.py|\.r|\.rb|\.rs|\.sbt|\.scala|\.sh|\.sql|\.swift|\.t|\.tcl|\.td|\.tex|\.travis.yml|\.ts|\.tsx|\.vb|\.vim|\.zsh|appveyor.yml|css)$/I cterm=none ctermfg=84 ctermbg=default
+highlight /^.*(todo|todo.md|todo.txt)$/I cterm=bold ctermfg=default ctermbg=default
+highlight /^.*\.(a|bat|com|dll|exe|ko|so)$/I cterm=bold ctermfg=203 ctermbg=default
+highlight /^.*\.(7z|apk|arj|bag|bin|bz|bz2|deb|dmg|gz|img|iso|jar|pkg|rar|rpm|tar|tbz|tbz2|tgz|toast|vcd|xz|z|zip)$/I cterm=underline ctermfg=123 ctermbg=default

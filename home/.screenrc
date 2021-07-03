@@ -1,0 +1,12 @@
+# the following two lines give a two-line status, with the current window highlighted
+hardstatus alwayslastline
+hardstatus string '%{= kw}%{g}[%= %{= kw}%-w%{+b yk} %n*%t%?(%u)%? %{-}%+w %=%{g}][%{B}%m/%d %{W}%C%A%{g}]'
+
+escape ^Tt
+vbell off
+startup_message off
+defscrollback 10240
+defmousetrack on
+termcapinfo xterm* ti@:te@
+rendition so "=" "KG"
+
