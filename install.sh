@@ -64,10 +64,9 @@ mkdir_w_check ~/.cache/shell
 # fish
 if type fish >/dev/null 2>&1; then
     echo Setting up fish
-    mkdir -p ~/.config/fish/conf.d/
     curl -sL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/plugins/git/git.plugin.zsh | grep "^alias" | grep -v '\$' > ~/.config/fish/conf.d/git-aliases.fish
-    fish -c "curl -sL https://git.io/fisher | source && fisher update"
-    fish -c "set -U FZF_LEGACY_KEYBINDINGS 0"
+    fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
+    fish -c "fisher update && set -U FZF_LEGACY_KEYBINDINGS 0"
     git clone --depth 1 https://github.com/yeseni-today/ays-fish-theme.git ~/.dotfiles/ays >/dev/null 2>&1
     cp ~/.dotfiles/ays/*.fish ~/.config/fish/functions && rm -rf ~/.dotfiles/ays
 fi
@@ -78,7 +77,4 @@ if [[ $SHELL != $(which zsh) ]]
 then
     echo Now execute
     echo chsh -s $(which zsh)
-    echo Optional binaries are below
-    echo fzf
-    echo cargo install zoxide
 fi

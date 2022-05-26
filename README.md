@@ -8,6 +8,13 @@ cd ~/.dotfiles
 bash ./install.sh
 ```
 
+### fish
+```sh
+cd ~/.dotfiles
+fish ./init-fish.sh
+cargo install zoxide
+```
+
 ### bash (optional)
 
 ```sh

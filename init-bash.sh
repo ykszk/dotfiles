@@ -9,7 +9,7 @@ curl -O https://raw.githubusercontent.com/git/git/master/contrib/completion/git-
 curl -O https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 curl -O https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/plugins/git/git.plugin.zsh
 
-grep "^alias" git.plugin.zsh > git-aliases.sh
+grep "^alias" git.plugin.zsh | grep -v "\\$" > ~/.bash_aliases
 
 OS=$(bash $SCRIPT_DIR/which-os.sh)
 lsc=$SCRIPT_DIR/home/snazzy.txt
