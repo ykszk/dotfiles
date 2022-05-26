@@ -23,6 +23,12 @@ set ignorecase
 set smartcase
 set wrapscan
 
+"change cursor shape in the insert mode
+let &t_ti .= "\e[1 q"
+let &t_SI .= "\e[5 q"
+let &t_EI .= "\e[1 q"
+let &t_te .= "\e[0 q"
+
 "other
 colorscheme koehler
 set whichwrap=b,s,h,l,<,>,[,]

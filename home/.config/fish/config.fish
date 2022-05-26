@@ -5,8 +5,11 @@ if status is-interactive
     export FZF_DEFAULT_OPTS='--height 100% --layout=reverse --border'
     set -U fish_greeting ""
     set -x LS_COLORS (cat ~/.zsh/snazzy.txt)
-    if test -d /usr/local/opt/coreutils/libexec/gnubin
+    if [ -e /usr/local/opt/coreutils/libexec/gnubin/ls ]
         alias ls="/usr/local/opt/coreutils/libexec/gnubin/ls --color"
+    end
+    if [ -e ~/.bash_aliases ]
+        source ~/.bash_aliases
     end
     bass source ~/.profile
     if type zoxide > /dev/null 2>&1
@@ -15,6 +18,18 @@ if status is-interactive
     end
     function cd
         builtin cd $argv[1]; and ls
+    end
+    if type exa > /dev/null 2>&1
+        alias e='exa'
+        alias ls=e
+        alias ea='exa -a'
+        alias la=ea
+        alias ee='exa -aahl'
+        alias ll=ee
+        alias et='exa -T -L 3 -I "node_modules|.git|.cache"'
+        alias lt=et
+        alias eta='exa -T -L 3 -a -I "node_modules|.git|.cache"'
+        alias lta=eta
     end
     if type ghq > /dev/null 2>&1
         export GHQ_ROOT="$HOME/projects"
