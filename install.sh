@@ -25,7 +25,7 @@ fi
 echo Making symbolic links
 mkdir_w_check ~/.dotfiles/.backup
 mkdir_w_check ~/.config
-for f in .zshrc .zsh_conf.sh .vimrc .dir_colors .gitconfig .alias.sh .Xdefaults .screenrc .git_commit_msg .tmux.conf .emacs.d .config/fish
+for f in .zshrc .zsh_conf.sh .vimrc .dir_colors .gitconfig .alias.sh .Xdefaults .screenrc .git_commit_msg .tmux.conf .emacs.d .config/fish .config/kitty
 do
     if [ \( -f $f -o \( -d ~/$f \) \) -a \( ! -L ~/$f \) ] # regular file exists and it's not a symlink
     then
