@@ -1,5 +1,5 @@
 " l for less
-set vicmd='less -N'
+set vicmd='bat --color always --paging always'
 
 " search configs
 set caseoptions='pg'
