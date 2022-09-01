@@ -9,42 +9,19 @@ then
     mv $SCRIPT_DIR ~/.dotfiles 
 fi
 
-mkdir_w_check() {
-if [ ! -e $1 ]
-then
-    mkdir -p $1
-fi
-}
-
+mkdir -p ~/.config
+mkdir -p ~/.zsh
 # install oh-my-zsh
 if [ ! -e ~/.zsh/oh-my-zsh ]
 then
     git clone --depth 1 https://github.com/robbyrussell/oh-my-zsh.git ~/.zsh/oh-my-zsh
 fi
 
-echo Making symbolic links
-mkdir_w_check ~/.dotfiles/.backup
-mkdir_w_check ~/.config
-for f in .zshrc .zsh_conf.sh .vimrc .dir_colors .gitconfig .alias.sh .Xdefaults .screenrc .git_commit_msg .tmux.conf .emacs.d .config/fish .config/kitty
-do
-    if [ \( -f $f -o \( -d ~/$f \) \) -a \( ! -L ~/$f \) ] # regular file exists and it's not a symlink
-    then
-        echo Backing up $f
-        mv $f ~/.dotfiles/.backup/$f
-    fi
-    if [ ! -L ~/$f ]
-    then
-        ln -s ~/.dotfiles/home/$f ~/$f
-    fi
-done
-
 # install zaw
 if [ ! -e ~/.zsh/zaw ]
 then
     echo Installing zaw
-    mkdir_w_check ~/.zsh
-    cd ~/.zsh
-    git clone --depth 1 https://github.com/zsh-users/zaw.git
+    git clone --depth 1 https://github.com/zsh-users/zaw.git ~/.zsh/zaw
 fi
 
 OS=$(bash $SCRIPT_DIR/which-os.sh)
@@ -58,8 +35,7 @@ else
     cp ~/.dotfiles/home/snazzy.txt ~/.zsh/snazzy.txt
 fi
 
-cd ~
-mkdir_w_check ~/.cache/shell
+mkdir -p ~/.cache/shell
 
 # fish
 if type fish >/dev/null 2>&1; then

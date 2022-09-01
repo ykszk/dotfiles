@@ -1,9 +1,6 @@
-export LANG='ja_JP.UTF-8'
-#eval `dircolors ~/.dir_colors -b`
 export LS_COLORS="$(cat ~/.bash/snazzy.txt)"
-source ~/.bash/git-prompt.sh
-source ~/.bash/git-completion.bash
-for f in ~/.bash/git-prompt.sh ~/.bash/git-completion.bash ~/.bash/git-aliases.sh
+
+for f in ~/.bash/git-prompt.sh ~/.bash/git-completion.bash ~/.bash/git-aliases.sh ~/.alias.sh
 do
 	if [ -e $f ]
 	then

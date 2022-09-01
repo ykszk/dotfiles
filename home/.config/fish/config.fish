@@ -4,14 +4,16 @@ if status is-interactive
     export LANG=en_US.UTF-8
     export FZF_DEFAULT_OPTS='--height 100% --layout=reverse --border'
     set -U fish_greeting ""
+    set -x GPG_TTY (tty)
     set -x LS_COLORS (cat ~/.zsh/snazzy.txt)
     if [ -e /usr/local/opt/coreutils/libexec/gnubin/ls ]
         alias ls="/usr/local/opt/coreutils/libexec/gnubin/ls --color"
     end
-    if [ -e ~/.bash_aliases ]
-        source ~/.bash_aliases
+    for src in ~/.profile ~/.alias.sh ~/.bash_aliases
+        if [ -e $src ]
+            bass source $src
+        end
     end
-    bass source ~/.profile
     if type zoxide > /dev/null 2>&1
         zoxide init fish | source
         bind \ed zi

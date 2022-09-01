@@ -1,9 +1,9 @@
-# dotfiles
+# My dotfiles
 
 ## INSTALLATION
 
 ```sh
-git clone https://github.com/yk-szk/dotfiles.git ~/.dotfiles
+git clone https://github.com/ykszk/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 bash ./install.sh
 ```
@@ -22,15 +22,8 @@ cd ~/.dotfiles
 bash ./init-bash.sh
 ```
 
-### In Windows
-In admin cmd
-
-```bat
-cd %HOMEPATH%
-git clone https://github.com/yk-szk/dotfiles.git
-cd dotfiles
-install.bat
-```
+## Windows Installation
+TODO
 
 ## config list
 * zsh

@@ -7,10 +7,6 @@ ZSH=$HOME/.zsh/oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="ys"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Set this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -40,7 +36,7 @@ DISABLE_AUTO_UPDATE="true"
 # Uncomment following line if you want to the command execution time stamp shown 
 # in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="yyyy/mm/dd"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -51,7 +47,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
@@ -67,14 +62,13 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-if [ -e ~/.zsh_conf.sh ]
-then
-    source ~/.zsh_conf.sh
-fi
-if [ -e ~/.alias.sh ]
-then
-    source ~/.alias.sh
-fi
+for src in ~/.zsh_conf.sh ~/.alias.sh
+do
+    if [ -e $src ]
+    then
+        source $src
+    fi
+done
 
 #zaw
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook

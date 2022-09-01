@@ -13,3 +13,4 @@ for %%d in (.emacs.d) do (
 )
 :: Set home environment variable
 setx home C:%HOMEPATH%\home
+ 
