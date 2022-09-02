@@ -1,29 +1,16 @@
-# My dotfiles
+## Install
 
-## INSTALLATION
+### fish (optional)
 
-```sh
-git clone https://github.com/ykszk/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-bash ./install.sh
-```
-
-### fish
 ```sh
 cd ~/.dotfiles
 fish ./init-fish.sh
 cargo install zoxide
 ```
 
-### bash (optional)
-
-```sh
-cd ~/.dotfiles
-bash ./init-bash.sh
-```
-
 ## Windows Installation
 TODO
+
 
 ## config list
 * zsh

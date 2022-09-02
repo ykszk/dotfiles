@@ -62,7 +62,7 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-for src in ~/.zsh_conf.sh ~/.alias.sh
+for src in ~/.profile ~/.zsh_conf.sh ~/.alias.sh
 do
     if [ -e $src ]
     then

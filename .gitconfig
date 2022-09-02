@@ -14,3 +14,6 @@
 	compactionHeuristic = true
 [init]
 	defaultBranch = main
+[user]
+	email = y-suzuki@radiol.med.osaka-u.ac.jp
+	name = Yuki Suzuki
