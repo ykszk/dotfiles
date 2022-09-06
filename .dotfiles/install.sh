@@ -6,6 +6,7 @@ cd ~
 
 mkdir -p ~/.config
 mkdir -p ~/.zsh
+mkdir -p ~/.bash
 # install oh-my-zsh
 if [ ! -e ~/.zsh/oh-my-zsh ]
 then
@@ -29,6 +30,7 @@ else
     # https://github.com/sharkdp/vivid
     cp ~/.dotfiles/snazzy.txt ~/.zsh/snazzy.txt
 fi
+cp ~/.zsh/snazzy.txt ~/.bash
 
 mkdir -p ~/.cache/shell
 
