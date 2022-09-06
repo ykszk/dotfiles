@@ -69,8 +69,8 @@ set sizefmt=units:iec,precision:3
 colorscheme suzuki
 
 " Pictures
-filetype *.bmp,*.jpg,*.jpeg,*.png,*.xpm open -a Preview %f &
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
+filetype {*.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.gif},<image/*> open -a Preview %f &
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.svg
     \ kitty +kitten icat --transfer-mode=file --place=%pwx%ph@%pxx%py %c %N
     \ %pc
     \ kitty +kitten icat --transfer-mode=file --place=%pwx%ph@%pxx%py --clear %N
@@ -78,12 +78,33 @@ fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
 
 " Pdf
 filetype *.pdf open -a Preview %f &
-fileviewer *.pdf
+fileviewer *.pdf,<application/pdf>
     \ tput cup %py %px > /dev/tty && sips -s format jpeg %c --out /tmp/tempfile.jpg > /dev/null&& kitty +kitten icat --transfer-mode=file --place=%pwx%ph@%pxx%py /tmp/tempfile.jpg %N
     \ %pc
     \ kitty +kitten icat --transfer-mode=file --place=%pwx%ph@%pxx%py --clear %N
 
 " syntaxhighlight
-fileviewer *.[ch],*.[ch]pp,*.[cht]xx,*.rs,*.md,*.css,*.html,*.js,*.tsx,*.toml,*.json,*.ini,*.yaml,*.yml,*.xml,*.py,*.csv,*bat,*.sh,*.fish,*.el,Dockerfile,Makefile,CMakeLists.txt env -uCOLORTERM bat --color always --wrap never --pager never %c -p
+fileviewer *.[ch],*.[ch]pp,*.[cht]xx,*.rs,*.md,*.css,*.html,*.js,*.tsx,*.toml,*.json,*.ini,*.yaml,*.yml,*.xml,*.py,*.csv,*bat,*.sh,*.fish,*.el,Dockerfile,Makefile,CMakeLists.txt,*.ipynb,*.ndjson,*.jsonl
+    \ env -uCOLORTERM bat --color always --wrap never --pager never %c -p
+
+" Archives
+fileviewer {*.zip,*.jar,*.war,*.ear},<application/zip,application/java-archive>
+    \ zipinfo %c
+fileviewer {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,
+           \*.tzst},
+          \<application/x-tar>
+         \ tar -tf %f
+
+" Audio
+fileviewer {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus,
+           \*.aac},<audio/*>
+         \ ffprobe -hide_banner -pretty %c 2>&1
+
+" Video
+fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+           \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+           \*.as[fx]},
+          \<video/*>
+         \ ffprobe -hide_banner -pretty %c 2>&1
 
 fileviewer */,.*/ tree -C -L 1 %f
