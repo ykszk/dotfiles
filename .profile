@@ -4,7 +4,7 @@ do
         PATH="$bindir:$PATH"
     fi
 done
-for srcdir in "$HOME/.cargo/env"
+for srcdir in "$HOME/.profile.local" "$HOME/.cargo/env"
 do
     if [ -e $srcdir ] ; then
         source $srcdir

@@ -46,8 +46,11 @@ nnoremap O :sync!<cr>
 nnoremap <space> t<down>
 
 " q or Q to quit
-nnoremap q :quit<cr>
+" nnoremap q :quit<cr>
 nnoremap Q :cquit<cr>
+
+" Toggle visibility of hidden files
+nnoremap A za 
 
 " zip unzip
 command! zip zip -r %D/%c:r.zip %f
