@@ -21,6 +21,10 @@ if status is-interactive
     function cd
         builtin cd $argv[1]; and ls
     end
+    function zip
+        command zip $argv[1..-1] -x "*/.DS_Store"
+    end
+
     if type exa > /dev/null 2>&1
         alias e='exa'
         alias ls=e
