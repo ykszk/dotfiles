@@ -54,4 +54,13 @@ if status is-interactive
             end
         end
     end
+    for cp in /opt/miniconda3/bin/conda ~/miniconda/bin/conda
+        if [ -e $cp ]
+            set -x CONDA_PATH $cp
+            break
+        end
+    end
+    function conda-init
+        eval $CONDA_PATH "shell.fish" "hook" $argv | source
+    end
 end
