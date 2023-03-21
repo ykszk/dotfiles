@@ -1,7 +1,5 @@
 if status is-interactive
 # Commands to run in interactive sessions can go here
-    export EDITOR='/usr/bin/vim'
-    export LANG=en_US.UTF-8
     export FZF_DEFAULT_OPTS='--height 100% --layout=reverse --border'
     set -U fish_greeting ""
     set -x GPG_TTY (tty)
@@ -54,7 +52,7 @@ if status is-interactive
             end
         end
     end
-    for cp in /opt/miniconda3/bin/conda ~/miniconda/bin/conda
+    for cp in /opt/miniconda3/bin/conda ~/.miniconda/bin/conda ~/miniconda/bin/conda
         if [ -e $cp ]
             set -x CONDA_PATH $cp
             break
@@ -62,5 +60,14 @@ if status is-interactive
     end
     function conda-init
         eval $CONDA_PATH "shell.fish" "hook" $argv | source
+    end
+    for cp in  ~/.mambaforge/bin/conda ~/mambaforge/bin/conda
+        if [ -e $cp ]
+            set -x MAMBA_PATH $cp
+            break
+        end
+    end
+    function mamba-init
+        eval $MAMBA_PATH "shell.fish" "hook" $argv | source
     end
 end

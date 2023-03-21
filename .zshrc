@@ -83,3 +83,14 @@ zstyle ':filter-select' case-insensitive yes
 bindkey '^[d' zaw-cdr # Alt-d to zaw-cdr
 bindkey '^[r' zaw-history
 
+for cp in /opt/miniconda3/bin/conda ~/.miniconda/bin/conda ~/miniconda/bin/conda
+do
+    if [ -e $cp ]; then
+        __conda_setup="$($cp 'shell.zsh' 'hook' 2> /dev/null)"
+        break
+    fi
+done
+
+function conda-init() {
+    eval "$__conda_setup"
+}
