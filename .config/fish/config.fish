@@ -35,7 +35,15 @@ if status is-interactive
         alias eta='exa -T -L 3 -a -I "node_modules|.git|.cache"'
         alias lta=eta
     end
-    if type ghq > /dev/null 2>&1
+	function vicd
+		set dst "$(command vifm --choose-dir - $argv[2..-1])"
+		if [ -z "$dst" ]; 
+			echo 'Directory picking cancelled/failed'
+			return 1
+		end
+		cd "$dst"
+	end
+	if type ghq > /dev/null 2>&1
         export GHQ_ROOT="$HOME/projects"
         function ghqcd
             ghq list | eval (__fzfcmd) "$FZF_DEFAULT_OPTS $flags" | read select
