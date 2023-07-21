@@ -100,6 +100,10 @@ fileviewer {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,
           \<application/x-tar>
          \ tar -tf %f
 
+" Office
+fileviewer *.doc,*.docx,*.odt,*.ppt,*.pptx,*.odp,*.xls,*.xlsx,*.ods
+         \ exiftool %c
+
 " Audio
 fileviewer {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus,
            \*.aac},<audio/*>
