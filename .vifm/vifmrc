@@ -99,6 +99,8 @@ fileviewer {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,
            \*.tzst},
           \<application/x-tar>
          \ tar -tf %f
+fileviewer {*.rar,*.7z,*.zstd,*.iso,*.dmg}
+    \ 7z l %c
 
 " Office
 fileviewer *.doc,*.docx,*.odt,*.ppt,*.pptx,*.odp,*.xls,*.xlsx,*.ods
