@@ -7,11 +7,17 @@ if status is-interactive
     if [ -e /usr/local/opt/coreutils/libexec/gnubin/ls ]
         alias ls="/usr/local/opt/coreutils/libexec/gnubin/ls --color"
     end
-    for src in ~/.profile ~/.alias.sh ~/.bash_aliases
+    for src in ~/.profile
         if [ -e $src ]
             bass source $src
         end
     end
+    for src in ~/.bash_aliases ~/.alias.sh
+        if [ -e $src ]
+            cat $src | perl -pe 's/^alias ([^\'\"]*)=/abbr -a $1 /g' | source
+        end
+    end
+    test "$TERM" = "xterm-kitty" && abbr -a ssh "kitty +kitten ssh"
     if type zoxide > /dev/null 2>&1
         zoxide init fish | source
         bind \ed zi
@@ -24,16 +30,11 @@ if status is-interactive
     end
 
     if type exa > /dev/null 2>&1
-        alias e='exa'
-        alias ls=e
-        alias ea='exa -a'
-        alias la=ea
-        alias ee='exa -aahl'
-        alias ll=ee
-        alias et='exa -T -L 3 -I "node_modules|.git|.cache"'
-        alias lt=et
-        alias eta='exa -T -L 3 -a -I "node_modules|.git|.cache"'
-        alias lta=eta
+        abbr -a e 'exa'
+        abbr -a ea 'exa -a'
+        abbr -a ee 'exa -aahl'
+        abbr -a et 'exa -T -L 3 -I "node_modules|.git|.cache"'
+        abbr -a eta 'exa -T -L 3 -a -I "node_modules|.git|.cache"'
     end
 	function vicd
 		set dst "$(command vifm --choose-dir - $argv[2..-1])"
