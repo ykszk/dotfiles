@@ -14,7 +14,7 @@ if status is-interactive
     for src in ~/.bash_aliases ~/.alias.sh
         [ -e $src ] && cat $src | perl -pe 's/^alias ([^\'\"]*)=/abbr -a $1 /g' | source
     end
-    test "$TERM" = "xterm-kitty" && abbr -a ssh "kitty +kitten ssh"
+    test "$TERM" = "xterm-kitty" && test "$SESSION_TYPE" != "remote/ssh" && abbr -a ssh "kitty +kitten ssh"
     if type -q zoxide
         zoxide init fish | source
         bind \ed zi
