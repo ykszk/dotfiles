@@ -29,6 +29,9 @@ let &t_SI .= "\e[5 q"
 let &t_EI .= "\e[1 q"
 let &t_te .= "\e[0 q"
 
+" Set the filetype for vifmrc files to vim
+au BufNewFile,BufRead vifmrc set filetype=vim
+
 "other
 colorscheme koehler
 set whichwrap=b,s,h,l,<,>,[,]

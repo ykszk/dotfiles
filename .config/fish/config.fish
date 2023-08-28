@@ -8,17 +8,14 @@ if status is-interactive
         alias ls="/usr/local/opt/coreutils/libexec/gnubin/ls --color"
     end
     for src in ~/.profile
-        if [ -e $src ]
-            bass source $src
-        end
+        [ -e $src ] && bass source $src
     end
+    # Set `alias`es as `abbr`s
     for src in ~/.bash_aliases ~/.alias.sh
-        if [ -e $src ]
-            cat $src | perl -pe 's/^alias ([^\'\"]*)=/abbr -a $1 /g' | source
-        end
+        [ -e $src ] && cat $src | perl -pe 's/^alias ([^\'\"]*)=/abbr -a $1 /g' | source
     end
     test "$TERM" = "xterm-kitty" && abbr -a ssh "kitty +kitten ssh"
-    if type zoxide > /dev/null 2>&1
+    if type -q zoxide
         zoxide init fish | source
         bind \ed zi
     end
@@ -29,10 +26,19 @@ if status is-interactive
         command zip $argv[1..-1] -x "*/.DS_Store"
     end
 
-    if type exa > /dev/null 2>&1
+    if type -q exa
+        function cd
+            builtin cd $argv[1]; and exa
+        end
         abbr -a e 'exa'
+        abbr -a l 'exa'
+        abbr -a lst 'exa -hl -s modified'
         abbr -a ea 'exa -a'
-        abbr -a ee 'exa -aahl'
+        abbr -a la 'exa -a'
+        abbr -a ee 'exa -ahl'
+        abbr -a ll 'exa -ahl'
+        abbr -a eet 'exa -ahl -s modified'
+        abbr -a llt 'exa -ahl -s modified'
         abbr -a et 'exa -T -L 3 -I "node_modules|.git|.cache"'
         abbr -a eta 'exa -T -L 3 -a -I "node_modules|.git|.cache"'
     end
@@ -44,7 +50,7 @@ if status is-interactive
 		end
 		cd "$dst"
 	end
-	if type ghq > /dev/null 2>&1
+	if type -q ghq
         export GHQ_ROOT="$HOME/projects"
         function ghqcd
             ghq list | eval (__fzfcmd) "$FZF_DEFAULT_OPTS $flags" | read select
