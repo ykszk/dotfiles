@@ -63,9 +63,6 @@ nnoremap U :!unzip %c -d %D<cr>
 nnoremap w :view<cr>
 vnoremap w :view<cr>gv
 
-" Open file
-nnoremap <cr> :!open %f<cr>
-
 set timefmt=" %Y/%m/%d %H:%M:%S"
 set statusline="  %t  [%T]%= %A %10u:%-7g %15s %20d [%a free]"
 set viewcolumns=-45%{name}..,-{ext},10{size},12{perms},21{mtime}
