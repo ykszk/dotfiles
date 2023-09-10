@@ -117,7 +117,7 @@ fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
          \ ffprobe -hide_banner -pretty %c 2>&1
 
 " Directory
-fileviewer */,.*/ exa --color always -l --tree --level 2 %c, tree -C -L 2 %c
+fileviewer */,.*/ lsd -lh --color always --tree --depth 2 --ignore-glob node_modules --ignore-glob .git --ignore-glob .cache %c, tree -C -L 2 %c
 
 " Sqlite3
 fileviewer *.sqlite3

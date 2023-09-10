@@ -26,22 +26,17 @@ if status is-interactive
         command zip $argv[1..-1] -x "*/.DS_Store"
     end
 
-    if type -q exa
+    if type -q lsd
         function cd
-            builtin cd $argv[1]; and exa
+            builtin cd $argv[1]; and lsd
         end
-        abbr -a e 'exa'
-        abbr -a l 'exa'
-        abbr -a lst 'exa -hl -s modified'
-        abbr -a ea 'exa -a'
-        abbr -a la 'exa -a'
-        abbr -a ee 'exa -ahl'
-        abbr -a ll 'exa -ahl'
-        abbr -a eet 'exa -ahl -s modified'
-        abbr -a llt 'exa -ahl -s modified'
-        abbr -a et 'exa -T -L 3 -I "node_modules|.git|.cache"'
-        abbr -a eta 'exa -T -L 3 -a -I "node_modules|.git|.cache"'
+        abbr -a ls lsd
+        abbr -a la 'lsd -a'
+        abbr -a ll 'lsd -lh'
+        abbr -a lt 'lsd --tree --depth 2 --ignore-glob node_modules --ignore-glob .git --ignore-glob .cache'
+        abbr -a lta 'lsd -a --tree --depth 2 --ignore-glob node_modules --ignore-glob .git --ignore-glob .cache'
     end
+
 	function vicd
 		set dst "$(command vifm --choose-dir - $argv[2..-1])"
 		if [ -z "$dst" ]; 
