@@ -1,6 +1,3 @@
-" l for less
-set vicmd='bat --color always --paging always'
-
 " search configs
 set caseoptions='pg'
 set incsearch
@@ -31,6 +28,9 @@ nnoremap M :move<cr>
 " E to open with vim
 command! vim vim %f
 nnoremap E :vim<cr>
+
+" rename
+nnoremap R :rename<cr>
 
 " ディレクトリを作成する
 nnoremap K :mkdir<space>

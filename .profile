@@ -17,6 +17,10 @@ do
     fi
 done
 
+if [ -d ~/.local/share/man ] ; then
+    export MANPATH="~/.local/share/man:$MANPATH"
+fi
+
 # [How can I detect if the shell is controlled from SSH? - Unix & Linux Stack Exchange](https://unix.stackexchange.com/questions/9605/how-can-i-detect-if-the-shell-is-controlled-from-ssh)
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   SESSION_TYPE=remote/ssh
