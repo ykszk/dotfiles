@@ -62,7 +62,7 @@ if status is-interactive
             end
         end
     end
-    for cp in /opt/miniconda3/bin/conda ~/.miniconda/bin/conda ~/miniconda/bin/conda
+    for cp in /opt/miniconda3/bin/conda ~/.miniforge3/bin/conda ~/.miniconda/bin/conda ~/miniconda/bin/conda
         if [ -e $cp ]
             set -x CONDA_PATH $cp
             break
