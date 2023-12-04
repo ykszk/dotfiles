@@ -17,7 +17,11 @@ if status is-interactive
     test "$TERM" = "xterm-kitty" && test "$SESSION_TYPE" != "remote/ssh" && abbr -a ssh "kitty +kitten ssh"
     if type -q zoxide
         zoxide init fish | source
-        bind \ed zi
+        function zi_repaint
+            zi
+            commandline -f repaint
+        end
+        bind \ed zi_repaint
     end
     function cd
         builtin cd $argv[1]; and ls
@@ -62,6 +66,21 @@ if status is-interactive
             end
         end
     end
+
+    # zsh's push-line
+    # https://github.com/fish-shell/fish-shell/issues/6973#issuecomment-1379827312
+    function push-line
+        set -g __fish_pushed_line (commandline)
+        commandline ""
+        commandline -f repaint
+        function after-next-prompt --on-event fish_postexec
+            commandline $__fish_pushed_line
+            set -e __fish_pushed_line 
+            functions --erase after-next-prompt
+        end
+    end
+    bind \cq push-line
+    # conda and mamba
     for cp in /opt/miniconda3/bin/conda ~/.miniforge3/bin/conda ~/.miniconda/bin/conda ~/miniconda/bin/conda
         if [ -e $cp ]
             set -x CONDA_PATH $cp
