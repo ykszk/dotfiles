@@ -1,5 +1,5 @@
 if status is-interactive
-# Commands to run in interactive sessions can go here
+    # Commands to run in interactive sessions can go here
     export FZF_DEFAULT_OPTS='--height 100% --layout=reverse --border'
     set -U fish_greeting ""
     set -x GPG_TTY (tty)
@@ -14,7 +14,7 @@ if status is-interactive
     for src in ~/.bash_aliases ~/.alias.sh
         [ -e $src ] && cat $src | perl -pe 's/^alias ([^\'\"]*)=/abbr -a $1 /g' | source
     end
-    test "$TERM" = "xterm-kitty" && test "$SESSION_TYPE" != "remote/ssh" && abbr -a ssh "kitty +kitten ssh"
+    test "$TERM" = xterm-kitty && test "$SESSION_TYPE" != remote/ssh && abbr -a ssh "kitty +kitten ssh"
     if type -q zoxide
         zoxide init fish | source
         function zi_repaint
@@ -41,15 +41,15 @@ if status is-interactive
         abbr -a lta 'lsd -a --tree --depth 2 --ignore-glob node_modules --ignore-glob .git --ignore-glob .cache'
     end
 
-	function vicd
-		set dst "$(command vifm --choose-dir - $argv[2..-1])"
-		if [ -z "$dst" ]; 
-			echo 'Directory picking cancelled/failed'
-			return 1
-		end
-		cd "$dst"
-	end
-	if type -q ghq
+    function vicd
+        set dst "$(command vifm --choose-dir - $argv[2..-1])"
+        if [ -z "$dst" ]
+            echo 'Directory picking cancelled/failed'
+            return 1
+        end
+        cd "$dst"
+    end
+    if type -q ghq
         export GHQ_ROOT="$HOME/projects"
         function ghqcd
             ghq list | eval (__fzfcmd) "$FZF_DEFAULT_OPTS $flags" | read select
@@ -75,28 +75,48 @@ if status is-interactive
         commandline -f repaint
         function after-next-prompt --on-event fish_postexec
             commandline $__fish_pushed_line
-            set -e __fish_pushed_line 
+            set -e __fish_pushed_line
             functions --erase after-next-prompt
         end
     end
+    # bind ctrl-q to push-line
     bind \cq push-line
+    # print pushed line to the right prompt
+    if functions -q fish_right_prompt
+        if not functions -q __fish_right_prompt_push_line_orig
+            functions -c fish_right_prompt __fish_right_prompt_push_line_orig
+        end
+        functions -e fish_right_prompt
+    else
+        function __fish_right_prompt_push_line_orig
+        end
+    end
+    function fish_right_prompt
+        if set -q __fish_pushed_line
+            set_color 996699
+            echo $__fish_pushed_line " "
+            set_color normal
+        end
+        __fish_right_prompt_push_line_orig
+    end
+
     # conda and mamba
-    for cp in /opt/miniconda3/bin/conda ~/.miniforge3/bin/conda ~/.miniconda/bin/conda ~/miniconda/bin/conda
+    for cp in /opt/miniconda3/bin/conda ~/.miniforge3/bin/conda ~/.miniconda/bin/conda ~/.miniconda3/bin/conda ~/miniconda/bin/conda
         if [ -e $cp ]
             set -x CONDA_PATH $cp
             break
         end
     end
     function conda-init
-        eval $CONDA_PATH "shell.fish" "hook" $argv | source
+        eval $CONDA_PATH "shell.fish" hook $argv | source
     end
-    for cp in  ~/.mambaforge/bin/conda ~/mambaforge/bin/conda
+    for cp in ~/.mambaforge/bin/conda ~/mambaforge/bin/conda
         if [ -e $cp ]
             set -x MAMBA_PATH $cp
             break
         end
     end
     function mamba-init
-        eval $MAMBA_PATH "shell.fish" "hook" $argv | source
+        eval $MAMBA_PATH "shell.fish" hook $argv | source
     end
 end
