@@ -23,16 +23,20 @@ if status is-interactive
         end
         bind \ed zi_repaint
     end
-    function cd
-        builtin cd $argv[1]; and ls
+    if type -q wanna_ls
+        function cd
+            builtin cd $argv[1]; and wanna_ls;  and ls
+        end
     end
     function zip
         command zip $argv[1..-1] -x "*/.DS_Store"
     end
 
     if type -q lsd
-        function cd
-            builtin cd $argv[1]; and lsd
+        if type -q wanna_ls
+            function cd
+                builtin cd $argv[1]; and wanna_ls;  and lsd
+            end
         end
         abbr -a ls lsd
         abbr -a la 'lsd -a'
@@ -101,7 +105,7 @@ if status is-interactive
     end
 
     # conda and mamba
-    for cp in /opt/miniconda3/bin/conda ~/.miniforge3/bin/conda ~/.miniconda/bin/conda ~/.miniconda3/bin/conda ~/miniconda/bin/conda
+    for cp in /opt/miniconda3/bin/conda ~/.miniforge3/bin/conda ~/.miniconda/bin/conda ~/.miniconda3/bin/conda ~/miniconda3/bin/conda ~/miniconda/bin/conda
         if [ -e $cp ]
             set -x CONDA_PATH $cp
             break

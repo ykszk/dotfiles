@@ -1,5 +1,6 @@
 function fish_prompt
   # Cache exit status
+  set -l last_status $status
 
   # Just calculate these once, to save a few cycles when displaying the prompt
   if not set -q __fish_prompt_hostname
@@ -41,7 +42,6 @@ function fish_prompt
   set -g __fish_git_prompt_show_informative_status true 
  
   # Env
-  set -l last_status $status
   set -l __work_dir (string replace $HOME '~' (pwd))
   
   # Last status
