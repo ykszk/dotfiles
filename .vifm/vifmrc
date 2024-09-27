@@ -19,11 +19,13 @@ nnoremap J :marks<cr>
 " set vifminfo=options,filetypes,commands,bookmarks,dhistory,state,cs
 set vifminfo=dhistory,marks,bookmarks
 
+:command! cpput :yank | winrun , put
 " copy to the other pane
-nnoremap C :copy<cr>
+nnoremap C :cpput<cr>
 " move to the other pane
 "nnoremap m :move<cr>
-nnoremap M :move<cr>
+:command! mvput :yank | winrun , put!
+nnoremap M :mvput<cr>
 
 " E to open with vim
 command! vim vim %f
