@@ -7,6 +7,10 @@ if status is-interactive
     if [ -e /usr/local/opt/coreutils/libexec/gnubin/ls ]
         alias ls="/usr/local/opt/coreutils/libexec/gnubin/ls --color"
     end
+
+    # ctr-c retains canceled command line
+    bind ctrl-c cancel-commandline
+
     for src in ~/.profile
         [ -e $src ] && bass source $src
     end
