@@ -14,6 +14,9 @@ function fish_prompt
         set -g __fish_user '&'
     end
   end
+  if set -q SINGULARITY_NAME
+    set -g __fish_user 'APPTAINER'
+  end
   set -g __fish_prompt_char '~'
 
   # Setup colors
