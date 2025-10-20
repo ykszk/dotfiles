@@ -126,3 +126,7 @@ fileviewer *.sqlite3
 fileviewer *.so,*.a,*.dylib
     \ nm -gC %c
 
+" DICOM
+fileviewer *.dcm
+    \ szkdcm -t PatientID -t PatientName -t StudyDate -t ContentTime -t Modality -t Rows -t Columns -t PixelSpacing %c | xan flatten
+
