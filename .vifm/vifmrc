@@ -128,5 +128,5 @@ fileviewer *.so,*.a,*.dylib
 
 " DICOM
 fileviewer *.dcm
-    \ szkdcm -t PatientID -t PatientName -t StudyDate -t ContentTime -t Modality -t Rows -t Columns -t PixelSpacing %c | xan flatten
+    \ szkdcm -t PatientID -t PatientName -t StudyDate -t ContentTime -t Modality -t Rows -t Columns -t PixelSpacing %c | xan flatten | tail -n +3
 
