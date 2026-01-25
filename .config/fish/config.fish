@@ -89,24 +89,6 @@ if status is-interactive
     end
     # bind ctrl-q to push-line
     bind \cq push-line
-    # print pushed line to the right prompt
-    if functions -q fish_right_prompt
-        if not functions -q __fish_right_prompt_push_line_orig
-            functions -c fish_right_prompt __fish_right_prompt_push_line_orig
-        end
-        functions -e fish_right_prompt
-    else
-        function __fish_right_prompt_push_line_orig
-        end
-    end
-    function fish_right_prompt
-        if set -q __fish_pushed_line
-            set_color 996699
-            echo $__fish_pushed_line " "
-            set_color normal
-        end
-        __fish_right_prompt_push_line_orig
-    end
 
     # conda and mamba
     for cp in /opt/miniconda3/bin/conda ~/.miniforge3/bin/conda ~/.miniconda/bin/conda ~/.miniconda3/bin/conda ~/miniconda3/bin/conda ~/miniconda/bin/conda
@@ -127,4 +109,10 @@ if status is-interactive
     function mamba-init
         eval $MAMBA_PATH "shell.fish" hook $argv | source
     end
+
+    # tide
+    # add `context` to the left prompt
+    set -U tide_left_prompt_items context pwd git newline character
+    # remove `context` from the left right
+    set -U tide_right_prompt_items status cmd_duration jobs direnv bun node python rustc java php pulumi ruby go gcloud kubectl distrobox toolbox terraform aws nix_shell crystal elixir zig time
 end
