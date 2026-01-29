@@ -115,4 +115,15 @@ if status is-interactive
     set -U tide_left_prompt_items context pwd git newline character
     # remove `context` from the left right
     set -U tide_right_prompt_items status cmd_duration jobs direnv bun node python rustc java php pulumi ruby go gcloud kubectl distrobox toolbox terraform aws nix_shell crystal elixir zig time
+    if type -q atuin
+        atuin init fish | source
+    end
+    if type -q yazi
+        # bind alt+y to yazi
+        bind \ey yazi
+    end
+    if type -q vifm
+        # bind alt+v to vifm
+        bind \ev vifm
+    end
 end
