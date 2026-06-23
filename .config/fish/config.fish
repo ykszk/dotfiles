@@ -49,6 +49,10 @@ if status is-interactive
         abbr -a lta 'lsd -a --tree --depth 2 --ignore-glob node_modules --ignore-glob .git --ignore-glob .cache'
     end
 
+    function mkcd
+        mkdir -p $argv[1] && cd $argv[1]
+    end
+
     function vicd
         set dst "$(command vifm --choose-dir - $argv[2..-1])"
         if [ -z "$dst" ]
