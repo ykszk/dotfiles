@@ -130,4 +130,11 @@ if status is-interactive
         # bind alt+v to vifm
         bind \ev vifm
     end
+    if type -q tmux
+        function tmux_attach_or_new
+            tmux a 2>/dev/null; or tmux
+        end
+
+        bind \et tmux_attach_or_new
+    end
 end
