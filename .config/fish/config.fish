@@ -137,8 +137,29 @@ if status is-interactive
         bind \ev vifm
     end
     if type -q tmux
-        function tmux_attach_or_new
-            tmux a 2>/dev/null; or tmux
+        if type -q fzf
+            function tmux_attach_or_new
+                set sessions (command tmux list-sessions -F '#{session_name}' 2>/dev/null)
+
+                set selected (
+                printf '%s\n' $sessions "[New Session]" |
+                fzf --prompt="tmux session> "
+                )
+
+                if test -z "$selected"
+                    return
+                end
+
+                if test "$selected" = "[New Session]"
+                    command tmux new-session
+                else
+                    command tmux attach-session -t "$selected"
+                end
+            end
+        else
+            function tmux_attach_or_new
+                tmux a 2>/dev/null; or tmux
+            end
         end
 
         bind \et tmux_attach_or_new
