@@ -94,6 +94,12 @@ if status is-interactive
     # bind ctrl-q to push-line
     bind \cq push-line
 
+    # Copy command line to clip board
+    function copy_commandline
+        commandline | fish_clipboard_copy
+    end
+    bind \cx copy_commandline
+
     # conda and mamba
     for cp in /opt/miniconda3/bin/conda ~/.miniforge3/bin/conda ~/.miniconda/bin/conda ~/.miniconda3/bin/conda ~/miniconda3/bin/conda ~/miniconda/bin/conda
         if [ -e $cp ]
